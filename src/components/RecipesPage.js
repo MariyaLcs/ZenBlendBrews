@@ -1,9 +1,10 @@
 import React, {useEffect} from "react";
 import {useDispatch, useSelector } from 'react-redux';
 import { fetchRecipes } from '../redux/actions/recipeActions'
+import RecipeList from "./RecipeList";
 
 
-function Recipes () {
+function RecipesPage () {
  
 
     const dispatch = useDispatch();
@@ -17,18 +18,14 @@ function Recipes () {
     return (
 
         <>
-            <h2>Recipes</h2>
-            <h3>Add recipe</h3>
-   
-            <ul>
-                {recipes.map(recipe=>(
-                    <li key={recipe.id}>{recipe.title}</li>
-                ))}
-            </ul>
+            <h2>Articles</h2>
+
+            <RecipeList recipes={recipes}/>
+
         </>
 
     )
 
 }
 
-export default Recipes;
+export default RecipesPage;
