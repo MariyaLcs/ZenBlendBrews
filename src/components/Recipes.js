@@ -1,13 +1,19 @@
-import React, {useState} from "react";
-import {connect } from 'react-redux';
-import * as recipeActions from '../redux/actions/recipeActions'
-import PropTypes from 'prop-types'
-
-function Recipes ({recipes, createRecipe}) {
-    console.log('Recipes, createRecipe:', { recipes, createRecipe });
+import React, {useEffect} from "react";
+import {useDispatch, useSelector } from 'react-redux';
+import { fetchRecipes } from '../redux/actions/recipeActions'
 
 
+function Recipes () {
+ 
 
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+      dispatch(fetchRecipes());
+    }, [dispatch]);
+
+    const recipes = useSelector(state => state.recipes);
+    console.log('Recipes', recipes );
     return (
 
         <>
@@ -24,19 +30,5 @@ function Recipes ({recipes, createRecipe}) {
     )
 
 }
-Recipes.propTypes={
-    recipes: PropTypes.array.isRequired,
-    createRecipe: PropTypes.func.isRequired
-}
 
-function mapStateToProps(state){
-    console.log('STATE', state);
-    return {
-        recipes: state.recipes.recipe
-    }
-}
-const mapDispatchToProps = {
-    createRecipe: recipeActions.createRecipe 
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Recipes);
+export default Recipes;

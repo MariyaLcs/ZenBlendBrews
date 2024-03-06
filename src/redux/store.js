@@ -3,10 +3,13 @@ import rootReducer from './reducers';
 
 
 const store = configureStore({
-    reducer: {
-        recipes: rootReducer,
-     
-    }
+    reducer: rootReducer,
 })
 
 export default store
+
+// const store = configureStore({
+//     reducer: rootReducer,
+//     // Redux Thunk is included by default, no need to manually add it here
+//   });
+  

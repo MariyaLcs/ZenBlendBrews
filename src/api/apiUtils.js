@@ -11,7 +11,15 @@ export async function handleResponse(response) {
 
 // In a real app, would likely call an error logging service.
 export function handleError(error) {
-  // eslint-disable-next-line no-console
-  console.error("API call failed. " + error);
-  throw error;
+  if (error.response && !error.response.ok) {
+
+    error.response.text().then(text => {
+      console.error(`API call failed with response: ${text}`);
+    }).catch(textError => {
+      console.error("Failed to parse error response text.", textError);
+    });
+  } else {
+
+    console.error("API call failed. " + error.toString());
+}
 }
