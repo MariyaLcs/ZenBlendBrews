@@ -1,4 +1,6 @@
-export default function recipeReducer(state = [{id:1, title:'hohoh'}], action) {
+import initialState from './initialState'
+
+export default function recipeReducer(state = initialState.recipes, action) {
     console.log('Action.type:', action.type); 
     switch (action.type) {
         case 'FETCH_RECIPES_SUCCESS':

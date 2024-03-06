@@ -1,7 +1,6 @@
 import { getAuthors } from '../../api/authorApi';
 import  { FETCH_AUTHORS_SUCCESS, FETCH_AUTHORS_START, FETCH_AUTHORS_FAIL}  from '../../actionTypes';
 
-
 export const fetchAuthors = () => {
     return function(dispatch) {
         dispatch({ type: FETCH_AUTHORS_START });
