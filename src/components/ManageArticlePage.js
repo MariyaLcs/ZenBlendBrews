@@ -1,9 +1,16 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector } from 'react-redux';
 import { fetchRecipes } from '../redux/actions/recipeActions'
 import { fetchAuthors } from '../redux/actions/authorActions'
+import ArticleForm from './ArticleForm'
 
 function ManageArticlePage() {
+    const recipes = useSelector(state => state.recipes)
+    const recipe = useSelector(state => state.recipe)
+    const authors = useSelector(state => state.authors)
+
+
+    const [errors, setErrors] = useState({})
 
     const dispatch = useDispatch();
 
@@ -15,14 +22,15 @@ function ManageArticlePage() {
         dispatch(fetchAuthors());
       }, [dispatch]);
 
-    const recipes = useSelector(state => state.recipes)
-    const authors = useSelector(state => state.authors)
-    console.log('Recipes form manage', recipes );
-    console.log('Authors form manage', authors );
+
+    
+    console.log('Recipes from manage', recipes );
+    console.log('Authors from manage', authors );
+    console.log('Recipe from manage', recipe );
 
   return (
     <div>
-        <h2 className="text-light">Manage Article</h2>
+        <ArticleForm recipes={recipes} authors={authors} errors={errors}/>
            
     </div>
   )

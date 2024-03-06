@@ -5,7 +5,6 @@ function RecipeList({ recipes, authors }) {
   return (
     <div className="recipe-grid">
       {recipes.map(recipe => {
-        // Find the author by id
         const author = authors.find(author => author.id === recipe.authorId);
         
         return (
