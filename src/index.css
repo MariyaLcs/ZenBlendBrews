@@ -15,7 +15,7 @@ code {
 .app-container {
   display: flex;
   height: 100vh; 
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.26), rgba(0, 0, 0, 0.26)), url("../public/images/app-background.png") no-repeat center center;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.56)), url("../public/images/app-background.png") no-repeat center center;
   background-size: cover;
   background-attachment: fixed;
 }
@@ -44,4 +44,43 @@ code {
   border: none; 
   text-align: center; 
 
+}
+
+/* RECIPE LIST */
+
+.recipe-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.recipe-card {
+  display: flex;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden; /* Ensures the border radius applies to child elements */
+  background: #f9f9f9;
+}
+.recipe-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.recipe-card a {
+  text-decoration: none; 
+  color: inherit; 
+}
+
+.recipe-card a:hover {
+  text-decoration: underline; 
+}
+.recipe-content {
+  padding: 16px;
+  flex: 1; /* Takes up the remaining space */
+}
+
+.recipe-image {
+  width: 50%; /* Adjust based on preference */
+  object-fit: cover; /* Keeps the aspect ratio of the image */
 }

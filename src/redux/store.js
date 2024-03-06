@@ -7,9 +7,3 @@ const store = configureStore({
 })
 
 export default store
-
-// const store = configureStore({
-//     reducer: rootReducer,
-//     // Redux Thunk is included by default, no need to manually add it here
-//   });
-  

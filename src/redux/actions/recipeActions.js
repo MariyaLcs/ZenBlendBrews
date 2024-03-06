@@ -13,7 +13,6 @@ export const fetchRecipes = () => {
 
         return getRecipes()
           .then(recipes => {
-            // Assuming handleResponse is called within getRecipes and it resolves with recipes
             dispatch({ type: FETCH_RECIPES_SUCCESS, payload: recipes });
           })
           .catch(error => {

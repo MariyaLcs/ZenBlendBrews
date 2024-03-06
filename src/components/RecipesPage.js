@@ -1,6 +1,7 @@
 import React, {useEffect} from "react";
 import {useDispatch, useSelector } from 'react-redux';
 import { fetchRecipes } from '../redux/actions/recipeActions'
+import { fetchAuthors } from '../redux/actions/authorActions'
 import RecipeList from "./RecipeList";
 
 
@@ -13,19 +14,22 @@ function RecipesPage () {
       dispatch(fetchRecipes());
     }, [dispatch]);
 
-    const recipes = useSelector(state => state.recipes);
-    console.log('Recipes', recipes );
-    return (
+    useEffect(() => {
+        dispatch(fetchAuthors());
+      }, [dispatch]);
+  
 
+    const recipes = useSelector(state => state.recipes);
+    const authors = useSelector(state => state.authors)
+    console.log('Recipes', recipes );
+    console.log('Authors', authors );
+
+    return (
         <>
             <h2>Articles</h2>
-
-            <RecipeList recipes={recipes}/>
-
+            <RecipeList recipes={recipes} authors={authors}/>
         </>
-
     )
-
 }
 
 export default RecipesPage;
