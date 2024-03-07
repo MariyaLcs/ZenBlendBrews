@@ -3,9 +3,11 @@ import {useDispatch, useSelector } from 'react-redux';
 import { fetchRecipes, saveRecipeAction } from '../redux/actions/recipeActions'
 import { fetchAuthors } from '../redux/actions/authorActions'
 import ArticleForm from './ArticleForm'
+import { useNavigate } from 'react-router-dom';
 
 function ManageArticlePage() {
-    const recipes = useSelector(state => state.recipes)
+    const navigate = useNavigate();
+
     const authors = useSelector(state => state.authors)
 
     const [recipe, setRecipe] = useState({})
@@ -30,8 +32,9 @@ function ManageArticlePage() {
     }
 
     function handleSave(e) {
-        e.preventDefault(); // Prevent the default form submission
+        e.preventDefault(); 
         dispatch(saveRecipeAction(recipe));
+        navigate('/recipes'); 
       }
       
 
