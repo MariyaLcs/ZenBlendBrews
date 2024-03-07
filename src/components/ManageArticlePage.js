@@ -3,28 +3,35 @@ import {useDispatch, useSelector } from 'react-redux';
 import { fetchRecipes, saveRecipeAction } from '../redux/actions/recipeActions'
 import { fetchAuthors } from '../redux/actions/authorActions'
 import ArticleForm from './ArticleForm'
-import { useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 function ManageArticlePage() {
-    const navigate = useNavigate();
+    const navigate = useNavigate()
+    const { slug } = useParams()
 
+    const recipes = useSelector(state => state.recipes);
     const authors = useSelector(state => state.authors)
 
     const [recipe, setRecipe] = useState({})
     const [errors, setErrors] = useState({})
 
-    const dispatch = useDispatch();
+    const dispatch = useDispatch()
+
+ useEffect(() => {
+      if (recipes.length === 0) {
+        dispatch(fetchRecipes());
+      } else if (slug) {
+        const existingRecipe = recipes.find(r => r.slug === slug) || null;
+        setRecipe(existingRecipe);
+      }
+    }, [dispatch, recipes, slug]);
 
     useEffect(() => {
-      dispatch(fetchRecipes());
-    }, [dispatch]);
-
-    useEffect(() => {
-        dispatch(fetchAuthors());
+        dispatch(fetchAuthors())
       }, [dispatch]);
 
     function handleChange(e){
-        const { name, value } = e.target;
+        const { name, value } = e.target
         setRecipe(prevRecipe => ({
           ...prevRecipe, 
           [name]: name === 'authorId' ? parseInt(value, 10) : value
@@ -33,8 +40,8 @@ function ManageArticlePage() {
 
     function handleSave(e) {
         e.preventDefault(); 
-        dispatch(saveRecipeAction(recipe));
-        navigate('/recipes'); 
+        dispatch(saveRecipeAction(recipe))
+        navigate('/recipes')
       }
       
 
