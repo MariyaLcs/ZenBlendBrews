@@ -1,4 +1,4 @@
-import  { FETCH_AUTHORS_SUCCESS }  from '../../actionTypes';
+import  { FETCH_AUTHORS_SUCCESS }  from '../actions/actionTypes';
 import initialState from './initialState'
 
 export default function authorReducer(state = initialState.authors, action) {

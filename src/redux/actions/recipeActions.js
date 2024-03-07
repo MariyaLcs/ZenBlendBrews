@@ -1,10 +1,6 @@
-import { getRecipes } from '../../api/recipeApi';
-import  { FETCH_RECIPES_START, FETCH_RECIPES_SUCCESS, FETCH_RECIPES_FAIL }  from '../../actionTypes';
+import { getRecipes, saveRecipe } from '../../api/recipeApi';
+import  { FETCH_RECIPES_START, FETCH_RECIPES_SUCCESS, FETCH_RECIPES_FAIL, CREATE_RECIPE_SUCCESS, UPDATE_RECIPE_SUCCESS }  from './actionTypes';
 
-
-export function createRecipe(recipe){
-    return {type: 'CREATE_RECIPE', recipe}
-}
 
 export const fetchRecipes = () => {
     return function(dispatch) {
@@ -20,4 +16,21 @@ export const fetchRecipes = () => {
         dispatch({ type: FETCH_RECIPES_FAIL, error: errorMessage });
           });
       };
+  };
+
+  export const saveRecipeAction = (recipe) => {
+    return function(dispatch, getState) {
+      dispatch({ type: FETCH_RECIPES_START });
+  
+      return saveRecipe(recipe)
+        .then(savedRecipe => {
+          recipe.id
+            ? dispatch({ type: UPDATE_RECIPE_SUCCESS, payload: savedRecipe })
+            : dispatch({ type: CREATE_RECIPE_SUCCESS, payload: savedRecipe });
+        })
+        .catch(error => {
+          const errorMessage = error.toString();
+          dispatch({ type: FETCH_RECIPES_FAIL, error: errorMessage });
+        });
+    };
   };

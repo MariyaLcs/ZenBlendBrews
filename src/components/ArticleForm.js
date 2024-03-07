@@ -4,16 +4,17 @@ import TextInput from "./common/TextInput";
 import SelectInput from "./common/SelectInput";
 
 const ArticleForm = ({
-  recipes,
+  recipe,
   authors,
   onSave,
   onChange,
   saving = false,
   errors = {}
 }) => {
+  console.log(recipe);
   return (
     <form onSubmit={onSave} className="text-light">
-      <h2  >{recipes.id ? "Edit" : "Add"} Article</h2>
+      <h2  >{recipe.id ? "Edit" : "Add"} Article</h2>
       {errors.onSave && (
         <div className="alert alert-danger" role="alert">
           {errors.onSave}
@@ -22,7 +23,7 @@ const ArticleForm = ({
       <TextInput
         name="title"
         label="Title"
-        value={recipes.title}
+        value={recipe.title}
         onChange={onChange}
         error={errors.title}
       />
@@ -30,7 +31,7 @@ const ArticleForm = ({
       <SelectInput
         name="authorId"
         label="Author"
-        value={recipes.authorId || ""}
+        value={recipe.authorId || ""}
         defaultOption="Select Author"
         options={authors.map(author => ({
           value: author.id,
@@ -43,7 +44,7 @@ const ArticleForm = ({
       <TextInput
         name="category"
         label="Category"
-        value={recipes.category}
+        value={recipe.category}
         onChange={onChange}
         error={errors.category}
       />
@@ -57,7 +58,7 @@ const ArticleForm = ({
 
 ArticleForm.propTypes = {
   authors: PropTypes.array.isRequired,
-  course: PropTypes.object.isRequired,
+  recipe: PropTypes.object.isRequired,
   errors: PropTypes.object,
   onSave: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
