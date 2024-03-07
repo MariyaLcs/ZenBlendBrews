@@ -77,10 +77,18 @@ code {
 }
 .recipe-content {
   padding: 16px;
-  flex: 1; /* Takes up the remaining space */
+  flex: 1; 
 }
 
 .recipe-image {
-  width: 50%; /* Adjust based on preference */
-  object-fit: cover; /* Keeps the aspect ratio of the image */
+  width: 50%; 
+  object-fit: cover; 
+}
+
+/* RECIPES PAGE */
+
+.custom-width {
+  width: 48%;
+  display: block; 
+  margin: 30px auto 30px 20px; 
 }
