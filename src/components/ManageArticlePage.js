@@ -12,7 +12,7 @@ function ManageArticlePage() {
     const recipes = useSelector(state => state.recipes);
     const authors = useSelector(state => state.authors);
 
-    const [recipe, setRecipe] = useState(null);
+    const [recipe, setRecipe] = useState({});
     const [errors, setErrors] = useState({});
 
     const dispatch = useDispatch();
@@ -30,10 +30,10 @@ function ManageArticlePage() {
     }, [authors.length, dispatch]);
 
     useEffect(() => {
-      if (slug && recipes.length > 0) {
+
         const existingRecipe = recipes.find(r => r.slug === slug);
         setRecipe(existingRecipe || {});
-      }
+      
     }, [slug, recipes]);
 
     function handleChange(e) {
@@ -52,10 +52,7 @@ function ManageArticlePage() {
         }
     }
 
-    if (slug && !recipe) {
-      return <div>Loading data...</div>;
-    }
-
+ 
     return (
         <div>
             {recipe && <ArticleForm recipe={recipe} authors={authors} errors={errors} onChange={handleChange} onSave={handleSave}/>}
