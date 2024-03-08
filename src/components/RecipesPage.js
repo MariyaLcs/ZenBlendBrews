@@ -12,6 +12,7 @@ function RecipesPage() {
 
   const recipes = useSelector((state) => state.recipes);
   const authors = useSelector((state) => state.authors);
+  const apiCallsInProgress = useSelector((state) => state.apiCallsInProgress);
   useEffect(() => {
     dispatch(fetchRecipes());
   }, [dispatch]);
@@ -27,15 +28,20 @@ function RecipesPage() {
   return (
     <>
       <h2 className="text-light">Articles</h2>
-      <Spinner />
-      <button
-        className="btn btn-lg btn-dark custom-width"
-        onClick={handleAddArticle}
-      >
-        Add New
-      </button>
-
-      <RecipeList recipes={recipes} authors={authors} />
+      {apiCallsInProgress > 0 ? (
+        <Spinner />
+      ) : (
+        <>
+          {' '}
+          <button
+            className="btn btn-lg btn-dark custom-width"
+            onClick={handleAddArticle}
+          >
+            Add New
+          </button>
+          <RecipeList recipes={recipes} authors={authors} />
+        </>
+      )}
     </>
   );
 }
