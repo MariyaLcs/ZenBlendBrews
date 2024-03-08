@@ -1,4 +1,5 @@
 export default {
-    recipes: [{id:1, title:'hohoh'}],
-    authors:[]
-}
+  recipes: [{ id: 1, title: 'hohoho' }],
+  authors: [],
+  apiCallsInProgress: 0,
+};
