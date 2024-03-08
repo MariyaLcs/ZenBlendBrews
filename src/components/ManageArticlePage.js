@@ -14,6 +14,7 @@ function ManageArticlePage() {
 
   const [recipe, setRecipe] = useState({});
   const [errors, setErrors] = useState({});
+  const [saving, setSaving] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -44,9 +45,13 @@ function ManageArticlePage() {
 
   function handleSave(e) {
     e.preventDefault();
+    setSaving(true);
     if (recipe) {
-      dispatch(saveRecipeAction(recipe));
-      navigate('/recipes');
+      // Dispatch the saveRecipeAction and then navigate on success
+      dispatch(saveRecipeAction(recipe)).then(() => {
+        setSaving(false); // Set saving to false once the action is completed
+        navigate('/recipes');
+      });
     }
   }
 
@@ -59,6 +64,7 @@ function ManageArticlePage() {
           errors={errors}
           onChange={handleChange}
           onSave={handleSave}
+          saving={saving}
         />
       )}
     </div>

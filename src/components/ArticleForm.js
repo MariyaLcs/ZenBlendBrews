@@ -1,20 +1,20 @@
-import React from "react";
-import PropTypes from "prop-types";
-import TextInput from "./common/TextInput";
-import SelectInput from "./common/SelectInput";
+import React from 'react';
+import PropTypes from 'prop-types';
+import TextInput from './common/TextInput';
+import SelectInput from './common/SelectInput';
 
 const ArticleForm = ({
   recipe,
   authors,
   onSave,
   onChange,
-  saving = false,
-  errors = {}
+  saving,
+  errors = {},
 }) => {
-  console.log(recipe);
+  console.log('saving', saving);
   return (
     <form onSubmit={onSave} className="text-light">
-      <h2  >{recipe.id ? "Edit" : "Add"} Article</h2>
+      <h2>{recipe.id ? 'Edit' : 'Add'} Article</h2>
       {errors.onSave && (
         <div className="alert alert-danger" role="alert">
           {errors.onSave}
@@ -31,11 +31,11 @@ const ArticleForm = ({
       <SelectInput
         name="authorId"
         label="Author"
-        value={recipe.authorId || ""}
+        value={recipe.authorId || ''}
         defaultOption="Select Author"
-        options={authors.map(author => ({
+        options={authors.map((author) => ({
           value: author.id,
-          text: author.name
+          text: author.name,
         }))}
         onChange={onChange}
         error={errors.author}
@@ -50,7 +50,7 @@ const ArticleForm = ({
       />
 
       <button type="submit" disabled={saving} className="btn btn-dark my-3">
-        {saving ? "Saving..." : "Save"}
+        {saving ? 'Saving...' : 'Save'}
       </button>
     </form>
   );
@@ -62,7 +62,7 @@ ArticleForm.propTypes = {
   errors: PropTypes.object,
   onSave: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
-  saving: PropTypes.bool
+  saving: PropTypes.bool,
 };
 
-export default ArticleForm ;
+export default ArticleForm;
