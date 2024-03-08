@@ -4,6 +4,7 @@ import { fetchRecipes, saveRecipeAction } from '../redux/actions/recipeActions';
 import { fetchAuthors } from '../redux/actions/authorActions';
 import ArticleForm from './ArticleForm';
 import { useParams, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 function ManageArticlePage() {
   const navigate = useNavigate();
@@ -47,9 +48,9 @@ function ManageArticlePage() {
     e.preventDefault();
     setSaving(true);
     if (recipe) {
-      // Dispatch the saveRecipeAction and then navigate on success
       dispatch(saveRecipeAction(recipe)).then(() => {
-        setSaving(false); // Set saving to false once the action is completed
+        toast.success('Article saved');
+        setSaving(false);
         navigate('/recipes');
       });
     }

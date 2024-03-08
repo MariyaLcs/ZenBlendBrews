@@ -11,7 +11,7 @@ const ArticleForm = ({
   saving,
   errors = {},
 }) => {
-  console.log('saving', saving);
+  // console.log('saving', saving);
   return (
     <form onSubmit={onSave} className="text-light">
       <h2>{recipe.id ? 'Edit' : 'Add'} Article</h2>
