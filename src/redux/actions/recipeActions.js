@@ -6,7 +6,7 @@ import {
   CREATE_RECIPE_SUCCESS,
   UPDATE_RECIPE_SUCCESS,
 } from './actionTypes';
-import { beginApiCall } from './apiStatusActions';
+import { beginApiCall, apiCallError } from './apiStatusActions';
 
 export const fetchRecipes = () => {
   return function (dispatch) {
@@ -19,10 +19,11 @@ export const fetchRecipes = () => {
       .catch((error) => {
         const errorMessage = error.toString();
         dispatch({ type: FETCH_RECIPES_FAIL, error: errorMessage });
+        dispatch(apiCallError(error));
+        return Promise.reject(error);
       });
   };
 };
-
 export const saveRecipeAction = (recipe) => {
   return function (dispatch, getState) {
     dispatch({ type: FETCH_RECIPES_START });
@@ -36,6 +37,8 @@ export const saveRecipeAction = (recipe) => {
       .catch((error) => {
         const errorMessage = error.toString();
         dispatch({ type: FETCH_RECIPES_FAIL, error: errorMessage });
+        dispatch(apiCallError(error));
+        return Promise.reject(error);
       });
   };
 };

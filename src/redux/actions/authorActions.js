@@ -4,7 +4,7 @@ import {
   FETCH_AUTHORS_START,
   FETCH_AUTHORS_FAIL,
 } from './actionTypes';
-import { beginApiCall } from './apiStatusActions';
+import { beginApiCall, apiCallError } from './apiStatusActions';
 
 export const fetchAuthors = () => {
   return function (dispatch) {
@@ -17,6 +17,8 @@ export const fetchAuthors = () => {
       .catch((error) => {
         const errorMessage = error.toString();
         dispatch({ type: FETCH_AUTHORS_FAIL, error: errorMessage });
+        dispatch(apiCallError(error));
+        return Promise.reject(error);
       });
   };
 };

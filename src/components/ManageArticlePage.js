@@ -47,13 +47,18 @@ function ManageArticlePage() {
   function handleSave(e) {
     e.preventDefault();
     setSaving(true);
-    if (recipe) {
-      dispatch(saveRecipeAction(recipe)).then(() => {
+    dispatch(saveRecipeAction(recipe))
+      .then(() => {
         toast.success('Article saved');
-        setSaving(false);
         navigate('/recipes');
+      })
+      .catch((error) => {
+        setSaving(false);
+        setErrors({ onSave: error.message || 'Saving failed' });
+      })
+      .finally(() => {
+        setSaving(false);
       });
-    }
   }
 
   return (

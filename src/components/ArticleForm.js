@@ -3,15 +3,8 @@ import PropTypes from 'prop-types';
 import TextInput from './common/TextInput';
 import SelectInput from './common/SelectInput';
 
-const ArticleForm = ({
-  recipe,
-  authors,
-  onSave,
-  onChange,
-  saving,
-  errors = {},
-}) => {
-  // console.log('saving', saving);
+const ArticleForm = ({ recipe, authors, onSave, onChange, saving, errors }) => {
+  //console.log('errors  ', errors);
   return (
     <form onSubmit={onSave} className="text-light">
       <h2>{recipe.id ? 'Edit' : 'Add'} Article</h2>
