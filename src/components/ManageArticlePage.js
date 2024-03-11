@@ -43,9 +43,23 @@ function ManageArticlePage() {
       [name]: name === 'authorId' ? parseInt(value, 10) : value,
     }));
   }
+  function formIsValid() {
+    const { title, authorId, category } = recipe;
+    const errors = {};
 
+    if (!title) errors.title = 'Title is required.';
+    if (!authorId) errors.author = 'Author is required';
+    if (!category) errors.category = 'Category is required';
+
+    setErrors(errors);
+    console.log('ERRORS  ', errors);
+    return Object.keys(errors).length === 0;
+  }
   function handleSave(e) {
     e.preventDefault();
+
+    if (!formIsValid()) return;
+
     setSaving(true);
     dispatch(saveRecipeAction(recipe))
       .then(() => {
