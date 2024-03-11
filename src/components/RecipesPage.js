@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchRecipes } from '../redux/actions/recipeActions';
+import {
+  fetchRecipes,
+  deleteRecipeAction,
+} from '../redux/actions/recipeActions';
 import { fetchAuthors } from '../redux/actions/authorActions';
 import RecipeList from './RecipeList';
 import { useNavigate } from 'react-router-dom';
@@ -25,6 +28,10 @@ function RecipesPage() {
     navigate('/recipe');
   }
 
+  function handleDeleteRecipe(recipeId) {
+    dispatch(deleteRecipeAction(recipeId));
+  }
+
   return (
     <>
       <h2 className="text-light">Articles</h2>
@@ -39,7 +46,11 @@ function RecipesPage() {
           >
             Add New
           </button>
-          <RecipeList recipes={recipes} authors={authors} />
+          <RecipeList
+            recipes={recipes}
+            authors={authors}
+            onDeleteRecipe={handleDeleteRecipe}
+          />
         </>
       )}
     </>

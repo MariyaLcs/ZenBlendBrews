@@ -1,10 +1,11 @@
-import { getRecipes, saveRecipe } from '../../api/recipeApi';
+import { getRecipes, saveRecipe, deleteRecipe } from '../../api/recipeApi';
 import {
   FETCH_RECIPES_START,
   FETCH_RECIPES_SUCCESS,
   FETCH_RECIPES_FAIL,
   CREATE_RECIPE_SUCCESS,
   UPDATE_RECIPE_SUCCESS,
+  DELETE_RECIPE_OPTIMISTIC,
 } from './actionTypes';
 import { beginApiCall, apiCallError } from './apiStatusActions';
 
@@ -40,5 +41,17 @@ export const saveRecipeAction = (recipe) => {
         dispatch(apiCallError(error));
         return Promise.reject(error);
       });
+  };
+};
+
+export const deleteRecipeAction = (recipeId) => {
+  return function (dispatch) {
+    dispatch({
+      type: DELETE_RECIPE_OPTIMISTIC,
+      payload: recipeId,
+    });
+    return deleteRecipe(recipeId).catch((error) => {
+      console.error('Delete failed:', error);
+    });
   };
 };

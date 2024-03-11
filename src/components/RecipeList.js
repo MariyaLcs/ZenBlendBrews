@@ -1,26 +1,34 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-function RecipeList({ recipes, authors }) {
+function RecipeList({ recipes, authors, onDeleteRecipe }) {
   return (
     <div className="recipe-grid">
-      {recipes.map(recipe => {
-        const author = authors.find(author => author.id === recipe.authorId);
-        
+      {recipes.map((recipe) => {
+        const author = authors.find((author) => author.id === recipe.authorId);
+
         return (
           <div className="recipe-card" key={recipe.id}>
             <div className="recipe-content">
-              <h3><Link to={"/recipe/" + recipe.slug}>{recipe.title}</Link></h3>
+              <h3>
+                <Link to={'/recipe/' + recipe.slug}>{recipe.title}</Link>
+              </h3>
               <p>Author: {author ? author.name : 'Unknown Author'}</p>
               <p>Category: {recipe.category}</p>
+              <button
+                className="btn btn-outline-danger"
+                onClick={() => onDeleteRecipe(recipe.id)}
+              >
+                Delete
+              </button>
             </div>
-     
+
             <div
               className="recipe-image"
               style={{
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
-                backgroundImage: `url(${process.env.PUBLIC_URL}/images/ice-tea.png)`
+                backgroundImage: `url(${process.env.PUBLIC_URL}/images/ice-tea.png)`,
               }}
             ></div>
           </div>
