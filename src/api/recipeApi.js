@@ -21,5 +21,5 @@ export function saveRecipe(recipe) {
 export function deleteRecipe(recipeId) {
   return fetch(baseUrl + recipeId, { method: 'DELETE' })
     .then(handleResponse)
-    .catch(handleError);
+    .catch((error) => Promise.reject(error));
 }

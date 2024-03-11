@@ -30,8 +30,13 @@ function RecipesPage() {
   }
 
   function handleDeleteRecipe(recipeId) {
-    toast.success('Article deleted!');
-    dispatch(deleteRecipeAction(recipeId));
+    dispatch(deleteRecipeAction(recipeId))
+      .then(() => {
+        toast.success('Article deleted!');
+      })
+      .catch((error) => {
+        toast.error('Delete failed. ' + error.message, { autoClose: false });
+      });
   }
 
   return (

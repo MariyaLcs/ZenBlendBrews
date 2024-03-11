@@ -50,8 +50,10 @@ export const deleteRecipeAction = (recipeId) => {
       type: DELETE_RECIPE_OPTIMISTIC,
       payload: recipeId,
     });
-    return deleteRecipe(recipeId).catch((error) => {
-      console.error('Delete failed:', error);
-    });
+    return deleteRecipe(recipeId)
+      .then(() => {})
+      .catch((error) => {
+        throw error;
+      });
   };
 };

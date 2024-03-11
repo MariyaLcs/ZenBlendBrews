@@ -1,25 +1,12 @@
 {
   "recipes": [
     {
-      "id": 1,
-      "title": "Brewing the Perfect Ice Tea: An Introduction",
-      "slug": "brewing-perfect-ice-tea-introduction",
-      "authorId": 1,
-      "category": "Beverage Crafting"
-    },
-    {
-      "id": 2,
-      "title": "The Art of Tea Infusion: Flavors and Techniques",
-      "slug": "art-tea-infusion-flavors-techniques",
+      "title": "adf",
       "authorId": 2,
-      "category": "Culinary Skills"
-    },
-    {
-      "id": 5,
-      "title": "Sustainable Tea Brewing: Eco-friendly Practices",
-      "slug": "sustainable-tea-brewing-eco-friendly",
-      "authorId": 1,
-      "category": "Sustainability"
+      "category": "af",
+      "createdAt": 1710156735448,
+      "slug": "adf",
+      "id": 1
     }
   ],
   "authors": [
