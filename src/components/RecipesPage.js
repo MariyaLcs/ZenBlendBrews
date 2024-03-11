@@ -8,6 +8,7 @@ import { fetchAuthors } from '../redux/actions/authorActions';
 import RecipeList from './RecipeList';
 import { useNavigate } from 'react-router-dom';
 import Spinner from './common/Spinner';
+import { toast } from 'react-toastify';
 
 function RecipesPage() {
   const dispatch = useDispatch();
@@ -29,6 +30,7 @@ function RecipesPage() {
   }
 
   function handleDeleteRecipe(recipeId) {
+    toast.success('Article deleted!');
     dispatch(deleteRecipeAction(recipeId));
   }
 
