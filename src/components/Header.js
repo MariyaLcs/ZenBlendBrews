@@ -1,9 +1,9 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 const Header = () => {
-  const getActiveStyle = ({ isActive }) => 
-    isActive ? { color: "#F15B2A", fontWeight: "bold" } : {};
+  const getActiveStyle = ({ isActive }) =>
+    isActive ? { color: '#F15B2A', fontWeight: 'bold' } : {};
 
   return (
     <nav className="sidebar">
@@ -11,10 +11,10 @@ const Header = () => {
         Home
       </NavLink>
       <NavLink to="/recipes" className="nav-link" style={getActiveStyle}>
-     Articles
+        <strong>Articles</strong>
       </NavLink>
       <NavLink to="/about" className="nav-link" style={getActiveStyle}>
-        About
+        About the project
       </NavLink>
     </nav>
   );
