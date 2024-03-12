@@ -18,6 +18,7 @@ export default function apiCallStatusReducer(
       return state + 1;
     case FETCH_RECIPES_SUCCESS:
     case CREATE_RECIPE_SUCCESS:
+    case UPDATE_RECIPE_SUCCESS:
     case FETCH_AUTHORS_SUCCESS:
     case API_CALL_ERROR:
       return state - 1;

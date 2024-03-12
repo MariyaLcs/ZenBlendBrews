@@ -59,7 +59,7 @@ code {
   display: flex;
   border: 1px solid #ddd;
   border-radius: 8px;
-  overflow: hidden; /* Ensures the border radius applies to child elements */
+  overflow: hidden;
   background: #f9f9f9;
 }
 .recipe-card:hover {
