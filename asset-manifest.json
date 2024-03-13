@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/ZenBlendBrews/static/css/main.a053710a.css",
-    "main.js": "/ZenBlendBrews/static/js/main.d3e347e3.js",
+    "main.js": "/ZenBlendBrews/static/js/main.3e55b823.js",
     "static/js/453.db73f739.chunk.js": "/ZenBlendBrews/static/js/453.db73f739.chunk.js",
     "static/media/app-background.png": "/ZenBlendBrews/static/media/app-background.1f51a0fbe70bc39967b0.png",
     "index.html": "/ZenBlendBrews/index.html",
     "main.a053710a.css.map": "/ZenBlendBrews/static/css/main.a053710a.css.map",
-    "main.d3e347e3.js.map": "/ZenBlendBrews/static/js/main.d3e347e3.js.map",
+    "main.3e55b823.js.map": "/ZenBlendBrews/static/js/main.3e55b823.js.map",
     "453.db73f739.chunk.js.map": "/ZenBlendBrews/static/js/453.db73f739.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a053710a.css",
-    "static/js/main.d3e347e3.js"
+    "static/js/main.3e55b823.js"
   ]
 }
