@@ -1,34 +1,41 @@
-import { handleResponse, handleError } from './apiUtils';
-const baseUrl = process.env.REACT_APP_API_URL + '/recipes/';
+import { recipes, authors, newRecipe } from "../tools/mockData";
 
 export async function getRecipes() {
-  try {
-    const response = await fetch(baseUrl);
-    return handleResponse(response);
-  } catch (error) {
-    return handleError(error);
-  }
+  // Simulating an async operation with Promise.resolve
+  return Promise.resolve(recipes);
 }
 
 export async function saveRecipe(recipe) {
-  try {
-    const response = await fetch(baseUrl + (recipe.id || ''), {
-      method: recipe.id ? 'PUT' : 'POST',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify(recipe),
-    });
-    return handleResponse(response);
-  } catch (error) {
-    handleError(error);
-    return await Promise.reject(error);
+  const savedRecipe = {
+    ...recipe,
+    // Assign an ID if the recipe is new. This is a simplistic approach.
+    id: recipe.id || Math.max(...recipes.map((r) => r.id)) + 1,
+    authorId: parseInt(recipe.authorId, 10), // Ensure authorId is a number
+  };
+
+  if (recipe.id) {
+    // Simulate updating the recipe by replacing the old item
+    const index = recipes.findIndex((r) => r.id === recipe.id);
+    recipes[index] = savedRecipe;
+  } else {
+    // Simulate adding a new recipe
+    recipes.push(savedRecipe);
   }
+
+  // Simulating an async operation with Promise.resolve
+  return Promise.resolve(savedRecipe);
 }
 
 export async function deleteRecipe(recipeId) {
-  try {
-    const response = await fetch(baseUrl + recipeId, { method: 'DELETE' });
-    return handleResponse(response);
-  } catch (error) {
-    return await Promise.reject(error);
+  // Simulate deleting the recipe by filtering it out
+  const index = recipes.findIndex(
+    (recipe) => recipe.id === parseInt(recipeId, 10)
+  );
+  if (index > -1) {
+    recipes.splice(index, 1);
   }
+
+  // Simulating an async operation with Promise.resolve
+  // Normally, you might return some status or the deleted object
+  return Promise.resolve();
 }
